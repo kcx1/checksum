@@ -1,0 +1,19 @@
+[project]
+name = "checksum"
+description = "Verify checksums"
+version = "0.1.0"
+authors = [
+    { name = "Casey Compton", email = "ccompton42@gmail.com" }
+]
+license = {file = "LICENSE.txt"}
+readme = "README.md"
+requires-python = ">=3.6"
+
+[project.scripts]
+checksum = "checksum"
+
+[build-system]
+requires = [
+    "setuptools >= 35.0.2",
+    "setuptools_scm >= 2.0.0, <3"
+]
