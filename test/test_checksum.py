@@ -1,4 +1,4 @@
-from main import hash_new_checksum, compare_checksums
+from cli import hash_new_checksum, compare_checksums
 
 correct_sha256 = "535c978e5d26ead85acda8e4295b971765392ef9623e7a64e353c1f19551007c"
 correct_sha512 = "37d8607d4011b3573601be5695a50087674eab8c315db6c83e2340b26fcca8e48b5a630fedaaf16e92e23abbcb7b6869e1ebc3753399e8c799acb718eae8f325"
