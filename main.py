@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import argparse
 import hashlib
 import sys
 from pathlib import Path
 from io import BytesIO
 from enum import Enum
-from typing import Optional
 
 
 class TermColors:
@@ -66,15 +67,15 @@ def hash_new_checksum(file: Path, hash_type: str = "sha256") -> str:
 
 
 def compare_checksums(file: Path, expected_result: str | Path, hash_type: str = "sha256") -> bool:
-    if Path(args.expected_result).exists():
-        with open(args.expected_result, "r") as f:
-            args.expected_result = f.read()
+    if Path(expected_result).exists():
+        with open(expected_result, "r") as f:
+            expected_result = f.read()
     return hash_new_checksum(file, hash_type) == expected_result
 
 
 def _print_to_terminal(
     file: Path,
-    expected_result: Optional[str, Path],
+    expected_result: str | Path | None,
     hash_type: str = "sha256",
 ):
     if expected_result is None:
