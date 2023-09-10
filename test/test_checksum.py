@@ -15,3 +15,9 @@ def test_compare_checksums():
     assert compare_checksums("test/test_file.iso", correct_sha256) is True
     assert compare_checksums("test/test_file.iso", correct_sha512, hash_type="sha512") is True
     assert compare_checksums("test/test_file.iso", correct_blake2, hash_type="blake2b") is True
+
+
+def test_compare_file_checksums():
+    assert compare_checksums("test/test_file.iso", "test/test_checksum_sha256.txt") is True
+    assert compare_checksums("test/test_file.iso", "test/test_checksum_sha512.txt", hash_type="sha512") is True
+    assert compare_checksums("test/test_file.iso", "test/test_checksum_blake2b.txt", hash_type="blake2b") is True
