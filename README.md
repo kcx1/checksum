@@ -17,6 +17,16 @@ You can specify the checksum that you would like to use by using the -t / --type
 **NOTE**
 The pyproject.toml has not been tested. I expect to update this in the near future to allow the tool to be built using pip install. 
 
+### Example Useage
+
+```bash
+python3 example.iso dc9f4f22700beb2895197fa0995e25075feb14457fde09ff3ac46dd35d75661a -t sha256
+```
+```bash
+python3 example.iso sha256.txt -t sha256
+```
+
+
 ### Help File
 ```
 usage: Check Sum [-h] [-t [Hash type]] file [expected_result]
