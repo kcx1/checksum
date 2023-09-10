@@ -7,10 +7,10 @@ from checksum import HashTypes, hash_new_checksum, compare_checksums
 
 
 class TermColors:
-    OKCYAN = "\033[96m"
-    OKGREEN = "\033[92m"
-    FAIL = "\033[91m"
-    ENDC = "\033[0m"
+    CYAN = "\033[96m"
+    GREEN = "\033[92m"
+    RED = "\033[91m"
+    END = "\033[0m"
 
 
 parser = argparse.ArgumentParser(prog="Check Sum", description="Check sum a file against a known checksum")
@@ -51,12 +51,12 @@ def main(
 ):
     if expected_result is None:
         result = (
-            f"Checksum for {file.name} is: \n {TermColors.OKCYAN}{hash_new_checksum(file, hash_type)}{TermColors.ENDC}"
+            f"Checksum for {file.name} is: \n {TermColors.CYAN}{hash_new_checksum(file, hash_type)}{TermColors.END}"
         )
     elif compare_checksums(file, expected_result, hash_type):
-        result = f"Checksum results: {TermColors.OKGREEN}PASS{TermColors.ENDC}"
+        result = f"Checksum results: {TermColors.GREEN}PASS{TermColors.END}"
     else:
-        result = f"Checksum results: {TermColors.FAIL}FAIL{TermColors.ENDC}"
+        result = f"Checksum results: {TermColors.RED}FAIL{TermColors.END}"
     print(result)
 
 

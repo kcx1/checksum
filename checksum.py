@@ -32,4 +32,3 @@ def compare_checksums(file: Path, expected_result: str | Path, hash_type: str = 
         with open(expected_result, "r") as f:
             expected_result = f.read()
     return hash_new_checksum(file, hash_type) == expected_result
-

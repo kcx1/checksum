@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Black">
+    <option name="enabledOnReformat" value="true" />
+    <option name="enabledOnSave" value="true" />
+    <option name="executionMode" value="BINARY" />
+    <option name="pathToExecutable" value="/opt/homebrew/bin/black" />
+    <option name="sdkUUID" value="72c81a63-75c6-4be5-b6d0-6b445757e3c1" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="py11" project-jdk-type="Python SDK" />
+</project>
