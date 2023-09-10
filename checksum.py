@@ -1,16 +1,17 @@
 import argparse
-import pathlib
 import hashlib
 import sys
+from pathlib import Path
 from io import BytesIO
 from enum import Enum
+from typing import Optional
 
 
 class TermColors:
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
 
 
 class HashTypes(Enum):
@@ -24,14 +25,12 @@ class HashTypes(Enum):
     md5 = hashlib.md5
 
 
-parser = argparse.ArgumentParser(
-    prog="Check Sum", description="Check sum a file against a known checksum"
-)
+parser = argparse.ArgumentParser(prog="Check Sum", description="Check sum a file against a known checksum")
 
 parser.add_argument(
     "file",
     action="store",
-    type=pathlib.Path,
+    type=Path,
     help="File that you wish to run a checksum against",
 )
 
@@ -57,31 +56,32 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-def run_checksum() -> str:
+def hash_new_checksum(file: Path, hash_type: str = "sha256") -> str:
     try:
-        with open(args.file, "rb") as f:
-            digest = hashlib.file_digest(BytesIO(f.read()), HashTypes[args.type].value)
+        with open(file, "rb") as f:
+            digest = hashlib.file_digest(BytesIO(f.read()), HashTypes[hash_type].value)
             return digest.hexdigest()
     except FileNotFoundError as e:
         sys.exit(f"ERROR: {e.strerror}\t{e.filename}")
 
 
-def get_checksum() -> str | None:
-    if args.expected_result is None:
-        return run_checksum()
-
-
-def compare_checksums() -> bool:
-    if pathlib.Path(args.expected_result).exists():
+def compare_checksums(file: Path, expected_result: str | Path, hash_type: str = "sha256") -> bool:
+    if Path(args.expected_result).exists():
         with open(args.expected_result, "r") as f:
             args.expected_result = f.read()
-    return run_checksum() == args.expected_result
+    return hash_new_checksum(file, hash_type) == expected_result
 
 
-def print_to_terminal():
-    if get_checksum():
-        result = f"Checksum for {args.file.name} is: \n {TermColors.OKCYAN}{get_checksum()}{TermColors.ENDC}"
-    elif compare_checksums():
+def _print_to_terminal(
+    file: Path,
+    expected_result: Optional[str, Path],
+    hash_type: str = "sha256",
+):
+    if expected_result is None:
+        result = (
+            f"Checksum for {file.name} is: \n {TermColors.OKCYAN}{hash_new_checksum(file, hash_type)}{TermColors.ENDC}"
+        )
+    elif compare_checksums(file, expected_result, hash_type):
         result = f"Checksum results: {TermColors.OKGREEN}PASS{TermColors.ENDC}"
     else:
         result = f"Checksum results: {TermColors.FAIL}FAIL{TermColors.ENDC}"
@@ -89,4 +89,4 @@ def print_to_terminal():
 
 
 if __name__ == "__main__":
-    print_to_terminal()
+    _print_to_terminal(args.file, args.expected_result, args.type)
