@@ -1,29 +1,51 @@
 # Checksum
 Simple python script to verify and check checksums
 
+### Install
+This project can be pip installed from GitHub:
+
+```bash
+pip install git+https://github.com/kcx1/checksum
+```
+
+### CLI Usage
+
 Call the script with python:
 
-```python3 checksum.py```
+```
+python3 checksum.py arg1 arg2
+```
 
 There are 2 positional arguments:
 
-1.) File: The file you would like to run a checksum against
-2.) Expected Result: *Optional* If none is given, then the script will simply return the checksum hash of the file supplied in the first argument. Otherwise the script will check to see if the resulting checksum from the provided file matches the expected result. 
+1. **File**: The file you would like to run a checksum against
+2. **Expected Result**: *Optional* - If none is given, then the script will simply return the checksum hash of the file supplied in the first argument. Otherwise the script will check to see if the resulting checksum from the provided file matches the expected result. 
 
 **NOTE** *The expected result argument can accept either a string or a file with a single checksum result inside.*
 
 You can specify the checksum that you would like to use by using the -t / --type flag. If none are given, then the default sha256 will be used. 
 
-**NOTE**
-The pyproject.toml has not been tested. I expect to update this in the near future to allow the tool to be built using pip install. 
 
-### Example Useage
+### Example CLI
 
 ```bash
 python3 example.iso dc9f4f22700beb2895197fa0995e25075feb14457fde09ff3ac46dd35d75661a -t sha256
 ```
 ```bash
 python3 example.iso sha256.txt -t sha256
+```
+
+### Example Python Usage
+```python
+from checksum import hash_new_checksum, compare_checksums
+
+# Get a new checksum
+new_checksum = hash_new_checksum('test/test_file.iso', hash_type="sha512")
+print(new_checksum)
+
+# Check if a checksum matches
+matches = compare_checksums('test/test_file.iso', 'test/test_checksum_sha512.txt', hash_type="sha512")
+print(matches)
 ```
 
 
