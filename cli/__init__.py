@@ -13,13 +13,13 @@ class TermColors:
     END = "\033[0m"
 
 
-parser = argparse.ArgumentParser(prog="Check Sum", description="Check sum a file against a known checksum")
+parser = argparse.ArgumentParser(prog="Check Sum", description="Check sum a file against a known Checksum")
 
 parser.add_argument(
     "file",
     action="store",
     type=Path,
-    help="File that you wish to run a checksum against",
+    help="File that you wish to run a Checksum against",
 )
 
 parser.add_argument(
@@ -38,7 +38,7 @@ parser.add_argument(
     type=str,
     choices=[hash_type.name for hash_type in HashTypes],
     metavar="Hash type",
-    help="Choose the checksum that you would like to use: [ %(choices)s ]",
+    help="Choose the Checksum that you would like to use: [ %(choices)s ]",
 )
 
 args = parser.parse_args()
