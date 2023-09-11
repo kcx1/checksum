@@ -10,10 +10,16 @@ pip install git+https://github.com/kcx1/checksum
 
 ### CLI Usage
 
-Call the script with python:
+Once pip installed the script can be accessed directly
 
 ```
-python3 checksum.py arg1 arg2
+checksum arg1 arg2
+```
+
+Alternatively, this repo can be cloned and the script can be called with python from inside of the cloned directory:
+
+```
+python3 -m checksum.py arg1 arg2
 ```
 
 There are 2 positional arguments:
@@ -29,10 +35,10 @@ You can specify the checksum that you would like to use by using the -t / --type
 ### Example CLI
 
 ```bash
-python3 example.iso dc9f4f22700beb2895197fa0995e25075feb14457fde09ff3ac46dd35d75661a -t sha256
+checksum example.iso dc9f4f22700beb2895197fa0995e25075feb14457fde09ff3ac46dd35d75661a -t sha256
 ```
 ```bash
-python3 example.iso sha256.txt -t sha256
+checksum example.iso sha256.txt -t sha256
 ```
 
 ### Example Python Usage
