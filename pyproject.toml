@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 
 [project.scripts]
-checksum = "cli:main"
+checksum = "cli:entry_point"
 
 [build-system]
 requires = [

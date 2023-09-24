@@ -60,5 +60,5 @@ def main(
     print(result)
 
 
-if __name__ == "__main__":
+def entry_point():
     main(args.file, args.expected_result, args.type)
