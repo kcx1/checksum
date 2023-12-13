@@ -19,7 +19,7 @@ checksum arg1 arg2
 Alternatively, this repo can be cloned and the script can be called with python from inside of the cloned directory:
 
 ```
-python3 -m checksum.py arg1 arg2
+python3 -m cli arg1 arg2
 ```
 
 There are 2 positional arguments:
