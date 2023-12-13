@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from checksum import HashTypes, hash_new_checksum, compare_checksums
+from checksum import HashTypes, compare_checksums, hash_new_checksum
 
 
 class TermColors:
