@@ -3,7 +3,7 @@ name = "checksum"
 description = "Verify checksums"
 version = "0.1.0"
 authors = [
-    { name = "Casey Compton", email = "ccompton42@gmail.com" }
+    { name = "Casey C", email = "kcx1codes@gmail.com" }
 ]
 license = {file = "LICENSE"}
 readme = "README.md"
